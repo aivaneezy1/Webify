@@ -10,7 +10,7 @@ import {
   UserButton
 } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
-import { ThemeProvider } from "../../my-app/app/Providers/theme-provider"
+import { ThemeProvider } from "./Providers/theme-provider";
 
 export default function RootLayout({
   children,
