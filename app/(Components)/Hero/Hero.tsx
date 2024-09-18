@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'; // ShadCN button
 const HeroComponent = () => {
-    const [isYearly, setIsYearly] = useState(false);
+
     return (
         <div className="text-white mt-36 max-w-auto">
             <h2 className="text-center text-xl font-semibold ">Create your <span className="border-b-2 border-green-500 font-bold">own website</span> in few minutes</h2>
