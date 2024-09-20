@@ -11,34 +11,35 @@ import {
 } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 import { ThemeProvider } from "./Providers/theme-provider";
-
+import { ConvexClientProvider } from "./Providers/convex-client-provider";
+import { ClerkLoading, ClerkLoaded } from "@clerk/nextjs";
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
-      <html
-        lang="en"
-        suppressHydrationWarning>
-        <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
+
+    <html
+      lang="en"
+      suppressHydrationWarning>
+      <body
+
+      >
+
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <ConvexClientProvider>
             <NavbarComponent />
             {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          </ConvexClientProvider>
+        </ThemeProvider>
+
+      </body>
+    </html>
+
   );
 }
