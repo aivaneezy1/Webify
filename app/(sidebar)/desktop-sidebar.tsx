@@ -40,6 +40,7 @@ import Image from 'next/image'
 import { useUser } from '@clerk/nextjs'
 import { useSelector, UseSelector } from 'react-redux'
 import { RootState } from '../redux/store'
+import Link from 'next/link'
 
 
 const style = {
@@ -53,7 +54,7 @@ const style = {
 
 
 const DesktopSidebarComponent = () => {
-
+    const { user } = useUser()
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -69,7 +70,7 @@ const DesktopSidebarComponent = () => {
                             height={30}
                             width={30}
                             alt="profile.png"
-                            src={`${userProfile.imageUrl}`}
+                            src={`${user?.imageUrl}`}
                             className='rounded-full hover:bg-gray-600' />
                     </div>
                 </DropdownMenuTrigger>
@@ -78,16 +79,28 @@ const DesktopSidebarComponent = () => {
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup
                     >
+                        <Link href="/profile">
+                            <DropdownMenuItem className='cursor-pointer'>
+                                <User className='mr-2 h-4 w-4' />
+                                <span>Profile</span>
+                            </DropdownMenuItem>
+                        </Link>
+
+
                         <DropdownMenuItem
                             className='cursor-pointer '>
                             <Plus className="mr-2 h-4 w-4" />
                             <span>Create new project</span>
                         </DropdownMenuItem>
-                        <DropdownMenuItem
-                            className='cursor-pointer '>
-                            <CreditCard className="mr-2 h-4 w-4" />
-                            <span>Billing</span>
-                        </DropdownMenuItem>
+
+                        <Link href="/billing">
+                            <DropdownMenuItem
+                                className='cursor-pointer '>
+                                <CreditCard className="mr-2 h-4 w-4" />
+                                <span>Billing</span>
+                            </DropdownMenuItem>
+                        </Link>
+
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
