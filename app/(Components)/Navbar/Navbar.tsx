@@ -5,8 +5,8 @@ import { useUser } from '@clerk/nextjs'
 import { UserButton } from '@clerk/nextjs'
 import { ModeToggle } from '@/app/utils/dark-mode-toogle'
 import DesktopSidebarComponent from '@/app/(sidebar)/desktop-sidebar'
-import MobileSidebarComponent from '@/app/(sidebar)/mobile-sidebar'
-import { SignOutButton } from '@clerk/nextjs'
+
+
 const NavbarComponent = () => {
     const { isLoaded, isSignedIn, user } = useUser()
     return (

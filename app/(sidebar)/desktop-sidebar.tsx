@@ -38,12 +38,14 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Image from 'next/image'
 import { useUser } from '@clerk/nextjs'
+import { useSelector, UseSelector } from 'react-redux'
+import { RootState } from '../redux/store'
 
 
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
-    left: '35%',
+    left: "35%",
     transform: 'translate(-50%, -50%)',
     width: 400,
     p: 4,
@@ -51,11 +53,11 @@ const style = {
 
 
 const DesktopSidebarComponent = () => {
-    const { isLoaded, isSignedIn, user } = useUser()
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    const userProfile = useSelector((state: RootState) => state.userProfile.value)
     return (
         <div >
             <DropdownMenu>
@@ -67,7 +69,7 @@ const DesktopSidebarComponent = () => {
                             height={30}
                             width={30}
                             alt="profile.png"
-                            src={`${user?.imageUrl}`}
+                            src={`${userProfile.imageUrl}`}
                             className='rounded-full hover:bg-gray-600' />
                     </div>
                 </DropdownMenuTrigger>
@@ -139,8 +141,9 @@ const DesktopSidebarComponent = () => {
                 <Modal
                     open={open}
                     onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
+                    disableEnforceFocus // Prevents the focus enforcement inside the modal
+                    aria-labelledby="user-profile-modal"
+                    aria-describedby="modal-description"
                 >
                     <Box sx={style}>
                         <UserProfile />

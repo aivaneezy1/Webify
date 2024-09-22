@@ -13,6 +13,7 @@ import { dark } from '@clerk/themes'
 import { ThemeProvider } from "./Providers/theme-provider";
 import { ConvexClientProvider } from "./Providers/convex-client-provider";
 import { ClerkLoading, ClerkLoaded } from "@clerk/nextjs";
+import { ReduxProvider } from "./redux/redux-provider";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,8 +34,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange>
           <ConvexClientProvider>
-            <NavbarComponent />
-            {children}
+            <ReduxProvider>
+              <NavbarComponent />
+              {children}
+            </ReduxProvider>
           </ConvexClientProvider>
         </ThemeProvider>
 
