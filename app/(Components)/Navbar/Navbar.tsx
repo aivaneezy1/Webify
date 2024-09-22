@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { useUser } from '@clerk/nextjs'
 import { UserButton } from '@clerk/nextjs'
 import { ModeToggle } from '@/app/utils/dark-mode-toogle'
+import DesktopSidebarComponent from '@/app/(sidebar)/desktop-sidebar'
+import MobileSidebarComponent from '@/app/(sidebar)/mobile-sidebar'
+import { SignOutButton } from '@clerk/nextjs'
 const NavbarComponent = () => {
     const { isLoaded, isSignedIn, user } = useUser()
     return (
@@ -12,12 +15,18 @@ const NavbarComponent = () => {
                 <div>We<span className='text-green-500'>bi</span>fy</div>
             </Link>
 
+            <div>
+
+
+            </div>
             <div className='ml-auto flex flex-row items-center justify-center  gap-5'>
                 {!isSignedIn ? (
                     <Link href="/sign-in">
                         <div className='bg-blue-500 py-2 px-6 rounded-lg hover:bg-blue-600'>Login</div>
                     </Link>
-                ) : <UserButton />}
+                ) : <DesktopSidebarComponent />}
+
+                {/*Dark mode */}
                 <div>
                     <ModeToggle />
                 </div>

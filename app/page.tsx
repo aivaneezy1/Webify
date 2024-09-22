@@ -4,6 +4,7 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+
 export default function Home() {
   const { isSignedIn } = useUser();
   const storeUser = useMutation(api.createUser.createUserTable)
